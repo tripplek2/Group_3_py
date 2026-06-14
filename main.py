@@ -4,7 +4,7 @@ from rich.table import Table
 from rich.console import Console
 from gym import Gym
 from models.user import User
-from models.trainer import Trainer   # make sure you have this class
+from models.trainer import Trainer   
 
 def main():
     # Load users at startup
