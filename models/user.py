@@ -63,7 +63,20 @@ class User(Person):
             raise ValueError("Invalid role.")
         self._role = value.lower()    
 
-    allowed_roles = ["user", "trainer", "member"]
+
+    def check_password(self, password):
+        return self.password == password
+
+    def to_dict(self):
+        return {
+        "id": self.id,
+        "name": self.name,
+        "username": self.username,
+        "password": self.password,
+        "role": self.role
+        }    
+
+    
 
     def __str__(self):
         """Return a formatted string representation of the User object."""
