@@ -6,8 +6,9 @@ class Gym:
     """Manages a collection of gym users and handles data persistence."""
 
     def __init__(self):
-        """Initializes an empty list to store User objects."""
+        """Initializes an empty list to store User and trainer objects."""
         self.users = []
+        self.trainers = []
 
     def add_user(self, user):
         """Adds a new User object to the gym system."""
@@ -15,6 +16,9 @@ class Gym:
 
     def list_users(self):
         """Iterates through and prints all registered users."""
+        if not self.users:
+            print("No users found.")
+            return
         for user in self.users:
             print(user)
 
@@ -35,6 +39,12 @@ class Gym:
         with open(filename, "w") as file:
             json.dump(data, file, indent=4)
 
+    def authenticate(self, username, password):
+        for user in self.users:
+            if user.username == username and user.check_password(password):
+                return user
+        return None
+
     @classmethod
     def load_users(cls, filename):
         """Loads user data from a JSON file and returns a new Gym instance."""
@@ -48,10 +58,10 @@ class Gym:
                 # Reconstruct User objects and add them to the new gym instance
                 for user_data in data:
                     user = User(
-                        user_data["name"],
-                        user_data["username"],
-                        user_data["password"],
-                        user_data["role"]
+                        name=user_data["name"],
+                        username=user_data["username"],
+                        password=user_data["password"],
+                        role=user_data["role"]
                     )
                     gym.add_user(user)
 
