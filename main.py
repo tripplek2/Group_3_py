@@ -12,6 +12,37 @@ def main():
     parser = argparse.ArgumentParser(description="Gym Management CLI System")
     subparsers = parser.add_subparsers(dest="command")
 
+    # add-trainer command
+    add_trainer = subparsers.add_parser("add-trainer")
+    add_trainer.add_argument("--name", required=True)
+    add_trainer.add_argument("--specialty", required=True)
+
+    # report command
+    subparsers.add_parser("report")
+
+    elif args.command == "add-trainer":
+        from models.trainer import Trainer   # assuming you have a Trainer class
+        trainer = Trainer(args.name, args.specialty)
+        gym.add_trainer(trainer)
+
+    # Save trainers to trainers.json
+    import json
+    with open("data/trainers.json", "w") as f:
+        json.dump([t.to_dict() for t in gym.trainers], f, indent=4)
+
+    print(f"Trainer {trainer.name} added successfully!")
+
+    elif args.command == "report":
+        stats = gym.user_statistics()
+        table = Table(title="User Statistics")
+        table.add_column("Role")
+        table.add_column("Count")
+        for role, count in stats.items():
+            table.add_row(role, str(count))
+    console = Console()
+    console.print(table)
+
+
     # add-user command
     add_user = subparsers.add_parser("add-user")
     add_user.add_argument("--name", required=True)
