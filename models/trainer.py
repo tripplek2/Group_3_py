@@ -17,7 +17,7 @@ class Trainer(Person):
     def add_member(self, member):
         """Assign a new member to this trainer's list."""
         if member not in self.members:
-        self.members.append(member)
+            self.members.append(member)
 
     def view_members(self):
         for member in self.members:
