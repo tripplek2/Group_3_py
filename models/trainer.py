@@ -16,7 +16,20 @@ class Trainer(Person):
 
     def add_member(self, member):
         """Assign a new member to this trainer's list."""
+        if member not in self.members:
         self.members.append(member)
+
+    def view_members(self):
+        for member in self.members:
+            print(member.name)
+
+    def to_dict(self):
+        """Return a dictionary representation of the Trainer object."""
+        return {
+            "name": self.name,
+            "specialty": self.specialty
+
+       }        
 
     def remove_member(self, member):
         """Remove a member from the trainer's list if they exist in it."""
