@@ -47,6 +47,26 @@ def main():
 
     # report
     subparsers.add_parser("report")
+    
+        # delete-user
+    delete_user = subparsers.add_parser(
+        "delete-user"
+    )
+
+    delete_user.add_argument(
+        "--username",
+        required=True
+    )
+
+    # delete-trainer
+    delete_trainer = subparsers.add_parser(
+        "delete-trainer"
+    )
+
+    delete_trainer.add_argument(
+        "--name",
+        required=True
+    )
 
     # Parse args
     args = parser.parse_args()
@@ -108,6 +128,23 @@ def main():
 
             print("Data saved successfully!")
 
+        elif args.command == "delete-user":
+
+            if gym.delete_user(
+                args.username,
+                "data/users.json"
+            ):
+                print(
+                    "User deleted successfully!"
+                )
+
+            else:
+                print(
+                    "User not found."
+                )
+
+            
+
         # Route to trainer creation logic
         elif args.command == "add-trainer":
 
@@ -137,6 +174,21 @@ def main():
                 # Render the list of existing trainers to the console
                 display_trainers(
                     gym.trainers
+                )
+
+        elif args.command == "delete-trainer":
+
+            if gym.delete_trainer(
+                args.name,
+                "data/trainers.json"
+            ):
+                print(
+                    "Trainer deleted successfully!"
+                )
+
+            else:
+                print(
+                    "Trainer not found."
                 )
 
         # Route to administrative report generation
