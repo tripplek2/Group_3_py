@@ -112,3 +112,29 @@ class Gym:
         if not trainer:
             raise ValueError("Trainer not found.")
         trainer.add_member(user)
+
+    def delete_trainer(
+        self,
+        trainer_name,
+        filename="trainers.json"
+    ):
+    # Locate the trainer object by name within the registry
+        trainer = self.find_trainer(
+            trainer_name
+        )
+
+        # Proceed if the trainer exists in the system
+        if trainer:
+        # Delete the trainer object from the in-memory list
+            self.trainers.remove(
+                trainer
+            )
+
+        # Sync the updated registry list back to the JSON file
+            self.save_trainers(
+            filename
+            )
+
+            return True  
+    
+        return False  
