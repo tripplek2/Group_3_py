@@ -47,10 +47,11 @@ class Gym:
                 return user
         return None
 
-    def delete_user(self, username):
+    def delete_user(self, username, filename="users.json"):
         user = self.find_user(username)
         if user:
             self.users.remove(user)
+            self.save_users(filename)
             return True
         return False
 

@@ -14,13 +14,6 @@
         "role": "trainer"
     },
     {
-        "id": 3,
-        "name": "Kelvin",
-        "username": "kelvin123",
-        "password": "1234",
-        "role": "member"
-    },
-    {
         "id": 4,
         "name": "Kelvin",
         "username": "kelvin",
@@ -32,6 +25,20 @@
         "name": "John",
         "username": "JohnWick",
         "password": "1234",
+        "role": "admin"
+    },
+    {
+        "id": 6,
+        "name": "SamWanjohi",
+        "username": "Samido",
+        "password": "2026",
+        "role": "admin"
+    },
+    {
+        "id": 7,
+        "name": "Elon",
+        "username": "MuskLion",
+        "password": "lion321",
         "role": "admin"
     }
 ]
