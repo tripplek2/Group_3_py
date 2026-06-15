@@ -5,6 +5,11 @@ from rich.console import Console
 from gym import Gym
 from models.user import User
 from models.trainer import Trainer   
+from utils.display import (
+    display_users,
+    display_trainers,
+    display_report
+)
 
 def main():
     # Load users at startup
@@ -54,18 +59,7 @@ def main():
         gym.add_user(user, "data/users.json")
         print("User added successfully!")
 
-    elif args.command == "list-users":
-        if not gym.users:
-            print("No users found.")
-        else:
-            table = Table(title="Gym Users")
-            table.add_column("Name")
-            table.add_column("Username")
-            table.add_column("Role")
-            for user in gym.users:
-                table.add_row(user.name, user.username, user.role)
-            console = Console()
-            console.print(table)
+    
 
     elif args.command == "login":
         user = gym.authenticate(args.username, args.password)
@@ -85,28 +79,7 @@ def main():
             json.dump([t.to_dict() for t in gym.trainers], f, indent=4)
         print(f"Trainer {trainer.name} added successfully!")
 
-    elif args.command == "list-trainers":
-        if not gym.trainers:
-            print("No trainers found.")
-        else:
-            table = Table(title="Gym Trainers")
-            table.add_column("Name")
-            table.add_column("Specialty")
-            table.add_column("Members Assigned")
-            for trainer in gym.trainers:
-                table.add_row(trainer.name, trainer.specialty, str(len(trainer.members)))
-            console = Console()
-            console.print(table)
-
-    elif args.command == "report":
-        stats = gym.user_statistics()
-        table = Table(title="User Statistics")
-        table.add_column("Role")
-        table.add_column("Count")
-        for role, count in stats.items():
-            table.add_row(role, str(count))
-        console = Console()
-        console.print(table)
+    
 
     else:
         print("Invalid command. Use --help")
