@@ -30,7 +30,11 @@ class Gym:
             with open(filename, "r") as file:
                 data = json.load(file)
                 gym.users = [User(**u) for u in data]
-        except FileNotFoundError:
+                if gym.users:
+                    User.id_counter = max(
+                        user.id for user in gym.users
+                    ) + 1
+        except (FileNotFoundError, json.JSONDecodeError):
             pass
         return gym
 
@@ -69,6 +73,8 @@ class Gym:
 
     # --- TRAINERS ---
     def add_trainer(self, trainer, filename="trainers.json"):
+        if self.find_trainer(trainer.name):
+            raise ValueError("Trainer already exists.")
         self.trainers.append(trainer)
         self.save_trainers(filename)
 
