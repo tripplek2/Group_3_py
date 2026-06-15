@@ -2,16 +2,15 @@
     {
         "name": "Ethan",
         "specialty": "Yogamaster",
-        "members": []
-    },
-    {
-        "name": "Ethan",
-        "specialty": "Yogamaster",
-        "members": []
+        "members": [
+            "kelvin"
+        ]
     },
     {
         "name": "Shayne",
         "specialty": "HIIT",
-        "members": []
+        "members": [
+            "bann123"
+        ]
     }
 ]

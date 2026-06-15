@@ -29,11 +29,14 @@ def display_trainers(trainers):
 
     table.add_column("Name")
     table.add_column("Specialty")
+    table.add_column("Members Assigned")
+    
 
     for trainer in trainers:
         table.add_row(
             trainer.name,
-            trainer.specialty
+            trainer.specialty,
+            str(len(trainer.members))
         )
 
     console.print(table)

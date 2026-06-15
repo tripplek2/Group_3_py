@@ -107,12 +107,18 @@ class Gym:
 
     def assign_member_to_trainer(self, username, trainer_name):
         user = self.find_user(username)
-        trainer = self.find_trainer(trainer_name)
         if not user:
             raise ValueError("User not found.")
+            
+        if user.role != "member":
+            raise ValueError("Only members can be assigned.")
+
+        trainer = self.find_trainer(trainer_name)
         if not trainer:
             raise ValueError("Trainer not found.")
+
         trainer.add_member(user)
+
 
     def delete_trainer(
         self,

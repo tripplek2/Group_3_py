@@ -7,13 +7,6 @@
         "role": "member"
     },
     {
-        "id": 2,
-        "name": "Shayne",
-        "username": "Shee254",
-        "password": "0000",
-        "role": "trainer"
-    },
-    {
         "id": 4,
         "name": "Kelvin",
         "username": "kelvin",
