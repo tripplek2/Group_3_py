@@ -45,6 +45,19 @@ def main():
     # list-trainers
     subparsers.add_parser("list-trainers")
 
+    assign_trainer = subparsers.add_parser(
+        "assign-trainer"
+    )
+
+    assign_trainer.add_argument(
+        "--username",
+        required=True
+    )
+
+    assign_trainer.add_argument(
+        "--trainer",
+        required=True
+    )
     # report
     subparsers.add_parser("report")
     
@@ -162,6 +175,20 @@ def main():
 
             print(
                 f"Trainer {trainer.name} added successfully!"
+            )
+        elif args.command == "assign-trainer":
+
+            gym.assign_member_to_trainer(
+                args.username,
+                args.trainer
+            )
+
+            gym.save_trainers(
+                "data/trainers.json"
+            )
+
+            print(
+                f"{args.username} assigned to {args.trainer}"
             )
 
         # Route to trainer listing logic
