@@ -9,6 +9,8 @@ from models.trainer import Trainer
 def main():
     # Load users at startup
     gym = Gym.load_users("data/users.json")
+    trainers_gym = Gym.load_trainers("data/trainers.json")
+    gym.trainers = trainers_gym.trainers
 
     # CLI parser
     parser = argparse.ArgumentParser(description="Gym Management CLI System")

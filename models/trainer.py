@@ -5,14 +5,15 @@ from .person import Person
 class Trainer(Person):
     """Represents a gym trainer, inheriting base attributes from Person."""
 
-    def __init__(self, name, specialty):
+    def __init__(self, name, specialty, members=None):
         """Initialize a new Trainer instance."""
         # Call the parent class (Person) constructor to initialize the name
         super().__init__(name)
 
         # Set specific trainer attributes and initialize an empty client list
         self.specialty = specialty
-        self.members = []
+        # members will be a list of usernames or User objects
+        self.members = members if members else []
 
     def add_member(self, member):
         """Assign a new member to this trainer's list."""
@@ -27,7 +28,8 @@ class Trainer(Person):
         """Return a dictionary representation of the Trainer object."""
         return {
             "name": self.name,
-            "specialty": self.specialty
+            "specialty": self.specialty,
+            "members": [m.username if hasattr(m, "username") else m for m in self.members]
 
        }        
 
@@ -40,5 +42,6 @@ class Trainer(Person):
         """Return a formatted string representation of the Trainer object."""
         return (
             f"Trainer: {self.name} | "
-            f"Specialty: {self.specialty}"
+            f"Specialty: {self.specialty} | "
+            f"Members: {len(self.memebrs)}"
         )

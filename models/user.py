@@ -8,14 +8,19 @@ class User(Person):
     # Class variable to automatically generate unique, sequential IDs
     id_counter = 1
 
-    def __init__(self, name, username, password, role):
+    def __init__(self, name, username, password, role, id=None):
         """Initialize a new User instance."""
         # Call the parent class (Person) constructor to initialize the name
         super().__init__(name)
 
+        # If id is provided (from JSON), use it; otherwise generate a new one
+        if id is not None:
+            self.id = id
+
         # Assign a unique ID and increment the class counter for the next user
-        self.id = User.id_counter
-        User.id_counter += 1
+        else:
+            self.id = User.id_counter
+            User.id_counter += 1
 
         # Set user attributes (username triggers the setter validation)
         self.username = username
