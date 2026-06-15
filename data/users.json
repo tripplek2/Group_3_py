@@ -29,16 +29,9 @@
     },
     {
         "id": 5,
-        "name": "Admin",
-        "username": "admin001",
-        "password": "admin123",
-        "role": "admin"
-    },
-    {
-        "id": 6,
         "name": "John",
-        "username": "johntrainer",
+        "username": "JohnWick",
         "password": "1234",
-        "role": "trainer"
+        "role": "admin"
     }
 ]

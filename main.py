@@ -1,7 +1,5 @@
 import argparse
 import json
-from rich.table import Table
-from rich.console import Console
 from gym import Gym
 from models.user import User
 from models.trainer import Trainer   
