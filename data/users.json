@@ -22,16 +22,9 @@
     },
     {
         "id": 6,
-        "name": "SamWanjohi",
-        "username": "Samido",
-        "password": "2026",
-        "role": "admin"
-    },
-    {
-        "id": 7,
-        "name": "Elon",
-        "username": "MuskLion",
-        "password": "lion321",
-        "role": "admin"
+        "name": "Njoroge",
+        "username": "NjorowaUba",
+        "password": "Njoro123",
+        "role": "member"
     }
 ]
