@@ -66,8 +66,8 @@ class User(Person):
     @role.setter
     def role(self, value):
         """Setter for role property with validation"""
-        ALLOWED_ROLES = ["admin", "trainer", "member"]
-        if value.lower() not in self.ALLOWED_ROLES:
+        allowed_roles = ["admin", "trainer", "member"]
+        if value.lower() not in allowed_roles:
             raise ValueError("Role must be admin, trainer or member.")
         self._role = value.lower()    
 

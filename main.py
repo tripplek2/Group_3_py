@@ -54,37 +54,110 @@ def main():
     args = parser.parse_args()
 
     # Handle commands
-    if args.command == "add-user":
-        user = User(args.name, args.username, args.password, args.role)
-        gym.add_user(user, "data/users.json")
-        print("User added successfully!")
+    try:
+        # Route to user creation logic
+        if args.command == "add-user":
+            # Instantiate a new User object with parsed arguments
+            user = User(
+                args.name,
+                args.username,
+                args.password,
+                args.role
+            )
 
-    
+            # Append the user to the gym registry and write to the JSON file
+            gym.add_user(
+                user,
+                "data/users.json"
+            )
 
-    elif args.command == "login":
-        user = gym.authenticate(args.username, args.password)
-        if user:
-            print(f"Welcome {user.name} ({user.role})")
+            print("User added successfully!")
+
+        # Route to user listing logic
+        elif args.command == "list-users":
+
+            # Check if the registry is currently empty
+            if not gym.users:
+                print("No users found.")
+            else:
+                # Render the list of existing users to the console
+                display_users(gym.users)
+
+        # Route to user authentication logic
+        elif args.command == "login":
+
+            # Verify credentials against registered gym users
+            user = gym.authenticate(
+                args.username,
+                args.password
+            )
+
+            # Check if authentication was successful
+            if user:
+                print(
+                    f"Welcome {user.name} ({user.role})"
+                )
+            else:
+                print("Invalid credentials")
+
+        # Route to manual state persistence
+        elif args.command == "save":
+
+            # Backup current in-memory user registry to disk
+            gym.save_users(
+                "data/users.json"
+            )
+
+            print("Data saved successfully!")
+
+        # Route to trainer creation logic
+        elif args.command == "add-trainer":
+
+            # Instantiate a new Trainer object with parsed arguments
+            trainer = Trainer(
+                args.name,
+                args.specialty
+            )
+
+            # Append the trainer to the gym registry and write to the JSON file
+            gym.add_trainer(
+                trainer,
+                "data/trainers.json"
+            )
+
+            print(
+                f"Trainer {trainer.name} added successfully!"
+            )
+
+        # Route to trainer listing logic
+        elif args.command == "list-trainers":
+
+            # Check if the trainer registry is currently empty
+            if not gym.trainers:
+                print("No trainers found.")
+            else:
+                # Render the list of existing trainers to the console
+                display_trainers(
+                    gym.trainers
+                )
+
+        # Route to administrative report generation
+        elif args.command == "report":
+
+            # Compile data and output gym user metrics
+            display_report(
+                gym.user_statistics()
+            )
+
+        # Handle unrecognised input subcommands
         else:
-            print("Invalid credentials")
+            print(
+                "Invalid command. Use --help"
+            )
 
-    elif args.command == "save":
-        gym.save_users("data/users.json")
-        print("Data saved successfully!")
-
-    elif args.command == "add-trainer":
-        trainer = Trainer(args.name, args.specialty)
-        gym.add_trainer(trainer)
-        with open("data/trainers.json", "w") as f:
-            json.dump([t.to_dict() for t in gym.trainers], f, indent=4)
-        print(f"Trainer {trainer.name} added successfully!")
-
-    
-
-    else:
-        print("Invalid command. Use --help")
+    # Intercept data validation or runtime errors safely
+    except ValueError as e:
+        print(f"Error: {e}")
 
 if __name__ == "__main__":
     main()
-
-

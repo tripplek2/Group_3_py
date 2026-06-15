@@ -8,5 +8,10 @@
         "name": "Ethan",
         "specialty": "Yogamaster",
         "members": []
+    },
+    {
+        "name": "Sarah",
+        "specialty": "Cardio",
+        "members": []
     }
 ]

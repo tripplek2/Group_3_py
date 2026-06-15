@@ -19,5 +19,26 @@
         "username": "kelvin123",
         "password": "1234",
         "role": "member"
+    },
+    {
+        "id": 4,
+        "name": "Kelvin",
+        "username": "kelvin",
+        "password": "1234",
+        "role": "member"
+    },
+    {
+        "id": 5,
+        "name": "Admin",
+        "username": "admin001",
+        "password": "admin123",
+        "role": "admin"
+    },
+    {
+        "id": 6,
+        "name": "John",
+        "username": "johntrainer",
+        "password": "1234",
+        "role": "trainer"
     }
 ]
