@@ -40,8 +40,11 @@ class Trainer(Person):
 
     def __str__(self):
         """Return a formatted string representation of the Trainer object."""
-        return (
-            f"Trainer: {self.name} | "
-            f"Specialty: {self.specialty} | "
-            f"Members: {len(self.memebrs)}"
-        )
+        return {
+            "name": self.name,
+            "specialty": self.specialty,
+            "members": [m.username for m in self.trainer.members]
+        
+        }
+            
+        
