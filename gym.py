@@ -61,14 +61,14 @@ class Gym:
         return None
 
     def user_statistics(self):
-        stats = {"members": 0, "trainers": 0, "admins": 0}
+        stats = {"members": 0, "trainers": 0, "admin": 0}
         for user in self.users:
             if user.role == "member":
                 stats["members"] += 1
             elif user.role == "trainer":
                 stats["trainers"] += 1
             elif user.role == "admin":
-                stats["admins"] += 1
+                stats["admin"] += 1
         return stats
 
     # --- TRAINERS ---

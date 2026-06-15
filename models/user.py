@@ -16,6 +16,9 @@ class User(Person):
         # If id is provided (from JSON), use it; otherwise generate a new one
         if id is not None:
             self.id = id
+            # keep counter in sync
+            if id >= User.id_counter:
+                User.id_counter = id + 1
 
         # Assign a unique ID and increment the class counter for the next user
         else:
@@ -63,9 +66,9 @@ class User(Person):
     @role.setter
     def role(self, value):
         """Setter for role property with validation"""
-        allowed_roles = ["user", "trainer", "member"]
-        if value.lower() not in allowed_roles:
-            raise ValueError("Invalid role.")
+        ALLOWED_ROLES = ["admin", "trainer", "member"]
+        if value.lower() not in self.ALLOWED_ROLES:
+            raise ValueError("Role must be admin, trainer or member.")
         self._role = value.lower()    
 
 
@@ -81,8 +84,6 @@ class User(Person):
         "role": self.role
         }    
 
-    
-
     def __str__(self):
         """Return a formatted string representation of the User object."""
         return (
@@ -90,3 +91,6 @@ class User(Person):
             f"{self.name} | "
             f"{self.role}"
         )
+    
+    def __repr__(self):
+        return f"User(id={self.id}, username={self.username}, role={self.role})"
