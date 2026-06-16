@@ -87,7 +87,7 @@ User attributes are protected through controlled access.
 3.Abstraction
 The Gym class hides the complexity of managing users and trainers.
 4.Polymorphism
-5.Shared behavior through inherited methods such as __str__().
+Shared behavior through inherited methods such as __str__().
 
 # Challenges Encountered
 1.Managing data persistence with JSON.
@@ -118,3 +118,6 @@ Python CLI Gym Management System Project
 # License
 
 This project is for educational purposes and learning Object-Oriented Programming in Python.
+
+# Loom recording
+https://www.loom.com/share/ab8ad0a2eefb4e3c843d13c17cffe7c5
